@@ -1,59 +1,76 @@
 <!DOCTYPE html>
-<!-- 256 aaron -->
-<!-- 303 mahomes -->
-<!-- 266 tom -->
 <html>
-  <head>
-    <style>
-        html {
-            background-color: gray;
-        }
+<head>
+  <style>
+    /* Add styling for a nice-looking interface with a grey background */
+    body {
+      background-color: lightgrey;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      font-size: 36px;
+    }
+    .player {
+      margin: 20px;
+      display: inline-block;
+      width: 300px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 2px 2px 10px grey;
+    }
+    .graph {
+      margin: 50px 0;
+    }
+    .bar {
+      width: 10px;
+      height: 0;
+      background-color: green;
+      transition: height 0.5s;
+    }
+  </style>
+  <title>Beat the Computer</title>
+</head>
+<body>
+  <h1>Beat the Computer</h1>
+  <p>You have $<span id="amount">100</span></p>
+  <p>You will choose from the following players:</p>
+  <div class="player">
+    <h2>Aaron Rodgers</h2>
+    <p>Average yards per game: 250</p>
+    <form>
+      <input type="radio" name="bet" value="over">Over 250 yards<br>
+      <input type="radio" name="bet" value="under">Under 250 yards<br>
+      <input type="number" name="amount" placeholder="Bet amount"><br><br>
+      <button type="submit">Place bet</button>
+      <p id="message"></p>
+    </form>
+  </div>
+  <div class="player">
+    <h2>Patrick Mahomes</h2>
+    <p>Average yards per game: 300</p>
+    <form>
+      <input type="radio" name="bet" value="over">Over 300 yards<br>
+      <input type="radio" name="bet" value="under">Under 300 yards<br>
+      <input type="number" name="amount" placeholder="Bet amount"><br><br>
+      <button type="submit">Place bet</button>
+      <p id="message"></p>
+    </form>
+  </div>
+  <div class="player">
+    <h2>Tom Brady</h2>
+    <p>Average yards per game: 275</p>
+    <form>
+      <input type="radio" name="bet" value="over">Over 275 yards<br>
+      <input type="radio" name="bet" value="under">Under 275 yards<br>
+      <input type="number" name="amount" placeholder="Bet amount"><br><br>
+      <button type="submit">Place bet</button>
+      <p id="message"></p>
+    </form>
+  </div>
+  <div class="graph">
+    <div class="bar" id="earnings-bar"></div>
+  </div>
+  <script
 
-        body {
-            text-align: center;
-            color: black;
-            font-family: sans-serif;
-        }
-
-        div {
-            margin-top: 25vh;
-        }
-    </style>
-    <body>
-      <main>
-        <h1>Beat The Computer</h1>
-        <p>Pick your player prop.</p>
-      </main>
-    </body>
-    <select id="mySelect">
-      <option value="Patrick Mahomes">Patrick Mahomes</option>
-      <option value="Aaron Rodgers">Aaron Rodgers</option>
-      <option value="Tom Brady">Tom Brady</option>
-    </select>
-
-    <div id="output"></div>
-
-    <script>
-      const select = document.getElementById("mySelect");
-      const output = document.getElementById("output");
-
-      select.addEventListener("change", function() {
-      const selectedOption = this.options[this.selectedIndex].value;
-      let text;
-
-      if (selectedOption === "Patrick Mahomes") {
-        text = "You selected Patrick Mahomes: Over/Under 303 yards?";
-      } else if (selectedOption === "Aaron Rodgers") {
-        text = "You selected Aaron Rodgers: Over/Under 256 yards?";
-      } else if (selectedOption === "Tom Brady") {
-        text = "You selected Tom Brady: Over/Under 266 yards?";
-      }
-
-      output.innerHTML = text;
-    });
-    </script>
-
-
-  </head>
-
-</html>
