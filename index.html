@@ -19,6 +19,12 @@
             margin-top: 25vh;
         }
     </style>
+    <body>
+      <main>
+        <h1>Beat The Computer</h1>
+        <p>Pick your player prop.</p>
+      </main>
+    </body>
     <select id="mySelect">
       <option value="value1">Patrick Mahomes</option>
       <option value="value2">Aaron Rodgers</option>
@@ -29,20 +35,15 @@
         const select = document.getElementById("mySelect");
         const selectedOption = select.options[select.selectedIndex].value;
 
-        if (selectedOption === "apple") {
+        if (selectedOption === "Patrick Mahomes") {
           console.log("Apple is selected");
-        } else if (selectedOption === "banana") {
+        } else if (selectedOption === "Aaron Rodgers") {
           console.log("Banana is selected");
-        } else if (selectedOption === "cherry") {
+        } else if (selectedOption === "Tom Brady") {
           console.log("Cherry is selected");
         }
       </script>
 
   </head>
-  <body>
-    <main>
-      <h1>Beat The Computer</h1>
-      <p>Pick your player prop.</p>
-    </main>
-  </body>
+
 </html>
