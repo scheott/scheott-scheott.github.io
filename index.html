@@ -1,89 +1,80 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    /* Add styling for a nice-looking interface with a grey background */
-    body {
-      background-color: lightgrey;
-      text-align: center;
-      padding: 50px;
+  <script>
+    // Define the bankroll, quarterbacks, and their average yards per game
+    let bankroll = 250;
+    let quarterbacks = [
+      {name: "Aaron Rodgers", avgYardsPerGame: 300},
+      {name: "Tom Brady", avgYardsPerGame: 275},
+      {name: "Patrick Mahomes", avgYardsPerGame: 350}
+    ];
+
+    // Function to place a bet
+    function placeBet() {
+      // Get the selected quarterback and bet amount
+      let selectedQuarterbackIndex = document.getElementById("quarterback").selectedIndex;
+      let selectedQuarterback = quarterbacks[selectedQuarterbackIndex];
+      let betAmount = parseInt(document.getElementById("betAmount").value);
+
+      // Check if the bet amount is within the bankroll
+      if (betAmount > bankroll) {
+        alert("Insufficient funds. Please enter a lower bet amount.");
+        return;
+      }
+
+      // Generate a random yards per game value
+      let randomYardsPerGame = Math.floor(Math.random() * (450 - 150 + 1)) + 150;
+
+      // Check if the player wins or loses the bet
+      let win = false;
+      if (document.getElementById("overUnder").value === "over" && randomYardsPerGame > selectedQuarterback.avgYardsPerGame) {
+        win = true;
+      } else if (document.getElementById("overUnder").value === "under" && randomYardsPerGame < selectedQuarterback.avgYardsPerGame) {
+        win = true;
+      }
+
+      // Update the bankroll
+      if (win) {
+        bankroll += betAmount;
+        alert("You win! " + selectedQuarterback.name + " had " + randomYardsPerGame + " yards per game.");
+      } else {
+        bankroll -= betAmount;
+        alert("You lose. " + selectedQuarterback.name + " had " + randomYardsPerGame + " yards per game.");
+      }
+
+      // Update the bankroll display
+      document.getElementById("bankroll").innerHTML = "$" + bankroll;
+
+      // Update the graph (this part is not implemented)
     }
-    h1 {
-      font-size: 36px;
-    }
-    .player {
-      margin: 20px;
-      display: inline-block;
-      width: 300px;
-      padding: 20px;
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 2px 2px 10px grey;
-    }
-    .graph {
-      width: 100%;
-      height: 300px;
-      margin: 50px 0;
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 2px 2px 10px grey;
-    }
-    .axis {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 30px;
-    }
-    .tick {
-      position: absolute;
-      bottom: 0;
-      width: 1px;
-      height: 5px;
-      background-color: grey;
-    }
-    .label {
-      position: absolute;
-      bottom: 0;
-      font-size: 12px;
-      color: grey;
-    }
-    .point {
-      position: absolute;
-      bottom: 0;
-      width: 10px;
-      height: 10px;
-      border-radius: 5px;
-      background-color: green;
-      transition: transform 0.5s;
-    }
-  </style>
-  <title>Beat the Computer</title>
+  </script>
 </head>
 <body>
-  <h1>Beat the Computer</h1>
-  <p>You have $<span id="amount">100</span></p>
-  <p>You will choose from the following players:</p>
-  <div class="player">
-    <h2>Aaron Rodgers</h2>
-    <p>Average yards per game: 250</p>
-    <form>
-      <input type="radio" name="bet" value="over">Over 250 yards<br>
-      <input type="radio" name="bet" value="under">Under 250 yards<br>
-      <input type="number" name="amount" placeholder="Bet amount"><br><br>
-      <button type="submit">Place bet</button>
-      <p id="message"></p>
-    </form>
-  </div>
-  <div class="player">
-    <h2>Patrick Mahomes</h2>
-    <p>Average yards per game: 300</p>
-    <form>
-      <input type="radio" name="bet" value="over">Over 300 yards<br>
-      <input type="radio" name="bet" value="under">Under 300 yards<br>
-      <input type="number" name="amount" placeholder="Bet amount"><br><br>
-      <button type="submit">Place bet</button>
-      <p id="message"></p>
-    </form
+  <h1>Quarterback Game</h1>
+  <p>Bankroll: <span id="bankroll">$250</span></p>
+  <p>
+    Select a quarterback:
+    <select id="quarterback">
+      <option>Aaron Rodgers</option>
+      <option>Tom Brady</option>
+      <option>Patrick Mahomes</option>
+    </select>
+  </p>
+  <p>
+    Guess over or under:
+    <select id="overUnder">
+      <option>over</option>
+      <option>under</option>
+    </select>
+  </p>
+  <p>
+    Enter bet amount:
+    <input type="number" id="betAmount">
+  </p>
+  <button onclick="placeBet()">Place Bet</button>
+  <hr>
+  <h
+
 
 
