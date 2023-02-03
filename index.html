@@ -2,8 +2,9 @@
 <html>
 <head>
   <script>
-    // Define the bankroll, quarterbacks, and their average yards per game
-    let bankroll = 250;
+    // Define the player's and computer's bankroll, quarterbacks, and their average yards per game
+    let playerBankroll = 250;
+    let computerBankroll = 500;
     let quarterbacks = [
       {name: "Aaron Rodgers", avgYardsPerGame: 300},
       {name: "Tom Brady", avgYardsPerGame: 275},
@@ -17,8 +18,8 @@
       let selectedQuarterback = quarterbacks[selectedQuarterbackIndex];
       let betAmount = parseInt(document.getElementById("betAmount").value);
 
-      // Check if the bet amount is within the bankroll
-      if (betAmount > bankroll) {
+      // Check if the player's bet amount is within their bankroll
+      if (betAmount > playerBankroll) {
         alert("Insufficient funds. Please enter a lower bet amount.");
         return;
       }
@@ -26,25 +27,33 @@
       // Generate a random yards per game value
       let randomYardsPerGame = Math.floor(Math.random() * (450 - 150 + 1)) + 150;
 
-      // Check if the player wins or loses the bet
-      let win = false;
+      // Check if the player wins or loses their bet
+      let playerWin = false;
       if (document.getElementById("overUnder").value === "over" && randomYardsPerGame > selectedQuarterback.avgYardsPerGame) {
-        win = true;
+        playerWin = true;
       } else if (document.getElementById("overUnder").value === "under" && randomYardsPerGame < selectedQuarterback.avgYardsPerGame) {
-        win = true;
+        playerWin = true;
       }
 
-      // Update the bankroll
-      if (win) {
-        bankroll += betAmount;
+      // Update the player's bankroll
+      if (playerWin) {
+        playerBankroll += betAmount;
         alert("You win! " + selectedQuarterback.name + " had " + randomYardsPerGame + " yards per game.");
       } else {
-        bankroll -= betAmount;
+        playerBankroll -= betAmount;
         alert("You lose. " + selectedQuarterback.name + " had " + randomYardsPerGame + " yards per game.");
       }
 
-      // Update the bankroll display
-      document.getElementById("bankroll").innerHTML = "$" + bankroll;
+      // Update the computer's bankroll
+      if (!playerWin) {
+        computerBankroll += betAmount;
+      } else {
+        computerBankroll -= betAmount;
+      }
+
+      // Update the player's bankroll display
+      document.getElementById("playerBankroll").innerHTML = "$" + playerBankroll;
+      document.getElementById("computerBankroll").innerHTML = "$" + computerBankroll;
 
       // Update the graph (this part is not implemented)
     }
@@ -52,11 +61,13 @@
 </head>
 <body>
   <h1>Quarterback Game</h1>
-  <p>Bankroll: <span id="bankroll">$250</span></p>
+  <p>Player Bankroll: <span id="playerBankroll">$250</span></p>
+  <p>Computer Bankroll: <span id="computerBankroll">$500</span></p>
   <p>
     Select a quarterback:
     <select id="quarterback">
-      <option>Aaron Rodgers (Avg: 300 yards per game, Over/Under: 300)</option>
+      <option>Aaron Rodgers (Avg: 300 yards per game, Over
+/Under: 300)</option>
       <option>Tom Brady (Avg: 275 yards per game, Over/Under: 275)</option>
       <option>Patrick Mahomes (Avg: 350 yards per game, Over/Under: 350)</option>
     </select>
