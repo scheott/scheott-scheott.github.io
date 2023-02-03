@@ -95,5 +95,45 @@
     <input type="number" id="betAmount">
   </p>
   <button onclick="placeBet()">Place Bet</button>
+  bankrollHistory.push({
+  player: playerBankroll,
+  computer: computerBankroll
+  });
+
+  let ctx = document.getElementById("bankrollGraph").getContext("2d");
+  let chart = new Chart(ctx, {
+    type: "line",
+    data: {
+     labels: Array.from(Array(bankrollHistory.length).keys()),
+     datasets: [
+      {
+        label: "Player Bankroll",
+        data: bankrollHistory.map(record => record.player),
+        backgroundColor: "rgba(255, 99, 132, 0.2)",
+        borderColor: "rgba(255, 99, 132, 1)",
+        borderWidth: 1
+      },
+      {
+        label: "Computer Bankroll",
+        data: bankrollHistory.map(record => record.computer),
+        backgroundColor: "rgba(54, 162, 235, 0.2)",
+        borderColor: "rgba(54, 162, 235, 1)",
+        borderWidth: 1
+      }
+    ]
+  },
+  options: {
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true
+          }
+        }
+      ]
+    }
+  }
+});
+
   <hr>
   <h
