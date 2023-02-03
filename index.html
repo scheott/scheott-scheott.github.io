@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <canvas id="bankrollGraph"></canvas>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
   <style>
     .container {
@@ -53,17 +52,17 @@
       // Update the player's bankroll
       if (playerWin) {
         playerBankroll += betAmount;
-        alert("You win! " + selectedQuarterback.name + " had " + randomYardsPerGame + " yards per game.");
+        alert("You win! " + selectedQuarterback.name + " had " + randomYardsPerGame + " yards.");
       } else {
         playerBankroll -= betAmount;
-        alert("You lose. " + selectedQuarterback.name + " had " + randomYardsPerGame + " yards per game.");
+        alert("You lose. " + selectedQuarterback.name + " had " + randomYardsPerGame + " yards.");
       }
 
       // Update the computer's bankroll
       if (!playerWin) {
-        computerBankroll += betAmount;
+        computerBankroll -= .25 * computerBankroll;
       } else {
-        computerBankroll -= betAmount;
+        computerBankroll += .25 * computerBankroll;
       }
 
       // Update the player's bankroll display
@@ -95,6 +94,6 @@
     Enter bet amount:
     <input type="number" id="betAmount">
   </p>
-  <buttom onclick="placeBet()">Place Bet</button>
+  <button onclick="placeBet()">Place Bet</button>
   <hr>
   <h
