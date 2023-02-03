@@ -26,23 +26,33 @@
       </main>
     </body>
     <select id="mySelect">
-      <option value="value1">Patrick Mahomes</option>
-      <option value="value2">Aaron Rodgers</option>
-      <option value="value3">Tom Brady</option>
+      <option value="Patrick Mahomes">Apple</option>
+      <option value="Aaron Rodgers">Banana</option>
+      <option value="Tom Brady">Cherry</option>
     </select>
 
-      <script>
-        const select = document.getElementById("mySelect");
-        const selectedOption = select.options[select.selectedIndex].value;
+    <div id="output"></div>
 
-        if (selectedOption === "Patrick Mahomes") {
-          console.log("Apple is selected");
-        } else if (selectedOption === "Aaron Rodgers") {
-          console.log("Banana is selected");
-        } else if (selectedOption === "Tom Brady") {
-          console.log("Cherry is selected");
-        }
-      </script>
+    <script>
+      const select = document.getElementById("mySelect");
+      const output = document.getElementById("output");
+
+      select.addEventListener("change", function() {
+      const selectedOption = this.options[this.selectedIndex].value;
+      let text;
+
+      if (selectedOption === "Patrick Mahomes") {
+        text = "You selected Patrick Mahomes: Over/Under 303 yards?";
+      } else if (selectedOption === "Aaron Rodgers") {
+        text = "You selected Aaron Rodgers: Over/Under 256 yards?";
+      } else if (selectedOption === "Tom Brady") {
+        text = "You selected Tom Brady: Over/Under 266 yards?";
+      }
+
+      output.innerHTML = text;
+    });
+    </script>
+
 
   </head>
 
