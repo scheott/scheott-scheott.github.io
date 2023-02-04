@@ -2,8 +2,8 @@
 <html>
   <script>
     // Define the player's and computer's bankroll, quarterbacks, and their average yards per game
-    let playerBankroll = 250;
-    let computerBankroll = 250;
+    let playerBankroll = 500;
+    let computerBankroll = 500;
     let quarterbacks = [
       {name: "Aaron Rodgers", avgYardsPerGame: 300},
       {name: "Tom Brady", avgYardsPerGame: 275},
@@ -61,7 +61,7 @@
 </head>
 <body>
   <h1>Quarterback Game</h1>
-  <p>Player Bankroll: <span id="playerBankroll">$250</span></p>
+  <p>Player Bankroll: <span id="playerBankroll">$500</span></p>
   <p>Computer Bankroll: <span id="computerBankroll">$500</span></p>
   <p>
     Select a quarterback:
@@ -88,4 +88,28 @@
   <script src="index.js"></script>
   <hr>
   <h
+  <body>
+  <h1>Quarterback Over/Under Game</h1>
+  <p>Your bankroll: $<span id="playerBankroll">250</span></p>
+  <p>Computer's bankroll: $<span id="computerBankroll">250</span></p>
+  <p>Choose a quarterback:</p>
+  <select id="quarterback">
+    <option value="Aaron Rodgers">Aaron Rodgers</option>
+    <option value="Tom Brady">Tom Brady</option>
+    <option value="Patrick Mahomes">Patrick Mahomes</option>
+  </select>
+  <p>
+    Guess if the quarterback will go over or under their average yards per game:
+    <input type="radio" id="over" name="guess" value="over">
+    <label for="over">Over</label>
+    <input type="radio" id="under" name="guess" value="under">
+    <label for="under">Under</label>
+  </p>
+  <p>Enter the amount you want to bet: $<input type="number" id="betAmount"></p>
+  <button id="placeBet">Place Bet</button>
+  <hr>
+  <canvas id="bankrollGraph"></canvas>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+  <script src="index.js"></script>
+</body>
   
