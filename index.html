@@ -1,5 +1,33 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+  </head>
+  <body>
+    <h1>Quarterback Game</h1>
+    <p>Player Bankroll: <span id="playerBankroll">$500</span></p>
+    <p>Computer Bankroll: <span id="computerBankroll">$500</span></p>
+    <p>
+      Select a quarterback:
+      <select id="quarterback">
+        <option>Aaron Rodgers (Avg: 300 yards per game, Over/Under: 300)</option>
+        <option>Tom Brady (Avg: 275 yards per game, Over/Under: 275)</option>
+        <option>Patrick Mahomes (Avg: 350 yards per game, Over/Under: 350...</option>
+      </select>
+    </p>
+    <p>
+      Enter bet amount:
+      <input type="text" id="betAmount" value="0">
+    </p>
+    <p>
+      Choose over or under:
+      <select id="overUnder">
+        <option>over</option>
+        <option>under</option>
+      </select>
+    </p>
+    <button onclick="placeBet()">Place Bet</button>
+    <canvas id="myLineGraph"></canvas>
   <script>
     // Define the player's and computer's bankroll, quarterbacks, and their average yards per game
     let playerBankroll = 500;
@@ -15,18 +43,19 @@
       // Function to add new data to the graph
     function addData(label, playerData, computerData) {
       myLineGraph.data.labels.push(label);
-      myLineGraph.data.datasets[0].data.push(playerData, computerData);
+      myLineGraph.data.datasets[0].data.push(playerData);
+      myLineGraph.data.datasets[1].data.push(computerData);
       myLineGraph.update();
     }
     // Function to place a bet
     function placeBet() {
       // Get the selected quarterback and bet amount
-      let selectedQuarterbackIndex = document.getElementById("quarterback").selectedIndex;
-      let selectedQuarterback = quarterbacks[selectedQuarterbackIndex];
-      let betAmount = parseInt(document.getElementById("betAmount").value);
-      document.getElementById("playerBankroll").innerHTML = "$" + playerBankroll;
-      document.getElementById("computerBankroll").innerHTML = "$" + computerBankroll;
-      addData("Round " + (bankrollHistory.length + 1), playerBankroll, computerBankroll);
+        let selectedQuarterbackIndex = document.getElementById("quarterback").selectedIndex;
+        let selectedQuarterback = quarterbacks[selectedQuarterbackIndex];
+        let betAmount = parseInt(document.getElementById("betAmount").value);
+        document.getElementById("playerBankroll").innerHTML = "$" + playerBankroll;
+        document.getElementById("computerBankroll").innerHTML = "$" + computerBankroll;
+        addData("Round " + (bankrollHistory.length + 1), playerBankroll, computerBankroll);
 
 
       // Check if the player's bet amount is within their bankroll
@@ -119,6 +148,7 @@
   </p>
   <button onclick="placeBet()">Place Bet</button>
   <hr>
-  <canvas id="myLineGraph"></canvas>
-  <h
+  <canvas id="myLineGraph" width="500" height="500"></canvas>
+  </body>
+</html>
  
