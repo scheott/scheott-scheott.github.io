@@ -64,7 +64,7 @@
         document.getElementById("playerBankroll").innerHTML = "$" + playerBankroll;
         document.getElementById("computerBankroll").innerHTML = "$" + computerBankroll;
         addData("Round " + (bankrollHistory.length + 1), playerBankroll, computerBankroll);
-
+        bankrollHistory.push(1);
 
       // Check if the player's bet amount is within their bankroll
       if (betAmount > playerBankroll) {
