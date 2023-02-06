@@ -56,8 +56,30 @@
       // Update the player's bankroll display
       document.getElementById("playerBankroll").innerHTML = "$" + playerBankroll;
       document.getElementById("computerBankroll").innerHTML = "$" + computerBankroll;
-    }
+      var ctx = document.getElementById('myLineGraph').getContext('2d');
+      var myLineGraph = new Chart(ctx, {
+          type: 'line',
+          data: {
+              labels: [],
+              datasets: [{
+                  label: 'Sales',
+                  data: [],
+                  backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                  borderColor: 'rgba(255, 99, 132, 1)',
+                  borderWidth: 1
+              }]
+          },
+          options: {}
+      });
+
+      // Function to add new data to the graph
+      function addData(label, data) {
+          myLineGraph.data.labels.push(label);
+          myLineGraph.data.datasets[0].data.push(data);
+          myLineGraph.update();
+      }
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 </head>
 <body>
   <h1>Quarterback Game</h1>
@@ -83,9 +105,7 @@
     <input type="number" id="betAmount">
   </p>
   <button onclick="placeBet()">Place Bet</button>
-   <canvas id="bankrollGraph"></canvas>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-  <script src="index.js"></script>
   <hr>
+  <canvas id="myLineGraph"></canvas>
   <h
  
