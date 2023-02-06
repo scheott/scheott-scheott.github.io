@@ -2,6 +2,12 @@
 <html>
   <head>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <style>
+      body {
+        background-color: black;
+        color: white;
+      }
+    </style>
   </head>
   <body>
     <h1>Over/Under Betting Game</h1>
@@ -29,7 +35,7 @@
       </select>
     </p>
     <button onclick="placeBet()">Place Bet</button>
-    <canvas id="myLineGraph" height="75" width="400"></canvas>
+    <canvas id="myLineGraph" height="95" width="400"></canvas>
   <script>
     // Define the player's and computer's bankroll, quarterbacks, and their average yards per game
     let playerBankroll = 500;
