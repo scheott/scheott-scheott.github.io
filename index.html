@@ -12,18 +12,28 @@
 
     // Array to store the player's and computer's bankroll history
     let bankrollHistory = [];
-
+      // Function to add new data to the graph
+    function addData(label, playerData, computerData) {
+      myLineGraph.data.labels.push(label);
+      myLineGraph.data.datasets[0].data.push(playerData, computerData);
+      myLineGraph.update();
+    }
     // Function to place a bet
     function placeBet() {
       // Get the selected quarterback and bet amount
       let selectedQuarterbackIndex = document.getElementById("quarterback").selectedIndex;
       let selectedQuarterback = quarterbacks[selectedQuarterbackIndex];
       let betAmount = parseInt(document.getElementById("betAmount").value);
+      document.getElementById("playerBankroll").innerHTML = "$" + playerBankroll;
+      document.getElementById("computerBankroll").innerHTML = "$" + computerBankroll;
+      addData("Round " + (bankrollHistory.length + 1), playerBankroll, computerBankroll);
+
 
       // Check if the player's bet amount is within their bankroll
       if (betAmount > playerBankroll) {
         alert("Insufficient funds. Please enter a lower bet amount.");
         return;
+
       }
 
       // Generate a random yards per game value
@@ -61,23 +71,25 @@
           type: 'line',
           data: {
               labels: [],
-              datasets: [{
-                  label: 'Sales',
-                  data: [],
-                  backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                  borderColor: 'rgba(255, 99, 132, 1)',
-                  borderWidth: 1
-              }]
+              datasets: [
+                  {
+                      label: 'Player Bankroll',
+                      data: [],
+                      backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                      borderColor: 'rgba(255, 99, 132, 1)',
+                      borderWidth: 1
+                  },
+                  {
+                      label: 'Computer Bankroll',
+                      data: [],
+                      backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                      borderColor: 'rgba(54, 162, 235, 1)',
+                      borderWidth: 1
+                  }
+              ]
           },
           options: {}
       });
-
-      // Function to add new data to the graph
-      function addData(label, data) {
-          myLineGraph.data.labels.push(label);
-          myLineGraph.data.datasets[0].data.push(data);
-          myLineGraph.update();
-      }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 </head>
