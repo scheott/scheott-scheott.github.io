@@ -4,7 +4,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
   </head>
   <body>
-    <h1>Quarterback Game</h1>
+    <h1>Over/Under Betting Game</h1>
+    <h3>The computer will always bet the Kelly Criterian, this game is supposed to showcase that this number is the optimal betting size</h3>
     <p>Player Bankroll: <span id="playerBankroll">$500</span></p>
     <p>Computer Bankroll: <span id="computerBankroll">$500</span></p>
     <p>
@@ -27,7 +28,7 @@
       </select>
     </p>
     <button onclick="placeBet()">Place Bet</button>
-    <canvas id="myLineGraph"></canvas>
+    <canvas id="myLineGraph" height="200" width="400"></canvas>
   <script>
     // Define the player's and computer's bankroll, quarterbacks, and their average yards per game
     let playerBankroll = 500;
