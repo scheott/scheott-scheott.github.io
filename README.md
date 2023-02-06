@@ -1,1 +1,3 @@
-# scheott.github.io
+# Kelly Criterion Betting Game
+###### Introduction
+this game
