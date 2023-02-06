@@ -64,7 +64,6 @@
         return;
 
       }
-    }
 
       // Generate a random yards per game value
       let randomYardsPerGame = Math.floor(Math.random() * (450 - 150 + 1)) + 150;
@@ -96,6 +95,7 @@
       // Update the player's bankroll display
       document.getElementById("playerBankroll").innerHTML = "$" + playerBankroll;
       document.getElementById("computerBankroll").innerHTML = "$" + computerBankroll;
+    }
       var ctx = document.getElementById('myLineGraph').getContext('2d');
       var myLineGraph = new Chart(ctx, {
           type: 'line',
